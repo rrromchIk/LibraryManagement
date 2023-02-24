@@ -4,7 +4,6 @@ import com.rom4ik.model.Person;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -15,12 +14,10 @@ import java.util.List;
  */
 @Component
 public class PersonDAO {
-    private final JdbcTemplate jdbcTemplate;
     private final SessionFactory sessionFactory;
 
     @Autowired
-    public PersonDAO(JdbcTemplate jdbcTemplate, SessionFactory sessionFactory) {
-        this.jdbcTemplate = jdbcTemplate;
+    public PersonDAO(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
@@ -33,7 +30,9 @@ public class PersonDAO {
     @Transactional
     public Person getById(int id) {
         Session session = sessionFactory.getCurrentSession();
-        return session.get(Person.class, id);
+        Person person = session.get(Person.class, id);
+        System.out.println(person.getBooks());
+        return person;
     }
 
     @Transactional

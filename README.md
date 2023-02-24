@@ -1,1 +1,2 @@
-# LibraryManagement CRUD WebApp baseb on SpringMVC using Hibernate ORM
+# LibraryManagement 
+CRUD WebApp based on SpringMVC using Hibernate ORM
